@@ -32,13 +32,14 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
       alert("Start date cannot be in the past.");
       return;
     }
-    
+
     try {
       if (editingAssignment) {
         const response = await axiosInstance.put(`/api/assignments/${editingAssignment._id}`, formData, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         setAssignments(assignments.map((assignment) => (assignment._id === response.data._id ? response.data : assignment)));
+        alert('Assignment updated successfully!');
       } else {
         const response = await axiosInstance.post('/api/assignments', formData, {
           headers: { Authorization: `Bearer ${user.token}` },
@@ -47,7 +48,7 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
         alert("Assignment created successfully!");
       }
       setEditingAssignment(null);
-      setFormData({ title: '', description: '', deadline: '' });
+      setFormData({ title: '', description: '', assignedIntern: '', startDate: '', deadline: '' });
     } catch (error) {
       alert('Failed to save assignment.');
     }

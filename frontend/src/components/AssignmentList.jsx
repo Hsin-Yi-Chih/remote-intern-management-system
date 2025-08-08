@@ -5,6 +5,8 @@ const AssignmentList = ({ assignments, setAssignments, setEditingAssignment }) =
   const { user } = useAuth();
 
   const handleDelete = async (assignmentId) => {
+    const ok = window.confirm('Delete this assignment permanently?'); 
+    if (!ok) return;
     try {
       await axiosInstance.delete(`/api/assignments/${assignmentId}`, {
         headers: { Authorization: `Bearer ${user.token}` },
