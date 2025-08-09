@@ -28,6 +28,12 @@ const updateAssignment = async (req, res) => {
     const assignment = await Assignment.findById(req.params.id);
     if (!assignment) return res.status(404).json({ message: 'Assignment not found' });
 
+// assignedIntern is not allowed to update
+    if (Object.prototype.hasOwnProperty.call(req.body, 'assignedIntern') &&
+        req.body.assignedIntern !== assignment.assignedIntern) {
+      return res.status(400).json({ message: 'Assigned intern cannot be changed.' });
+    }
+
     assignment.title = title || assignment.title;
     assignment.description = description || assignment.description;
     assignment.startDate = startDate || assignment.startDate;

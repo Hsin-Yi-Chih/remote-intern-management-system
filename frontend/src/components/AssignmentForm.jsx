@@ -33,6 +33,12 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
       return;
     }
 
+    // assignedIntern cannot be edited
+    if (editingAssignment && formData.assignedIntern !== editingAssignment.assignedIntern) {
+      alert('Assigned intern cannot be changed.');
+      return;
+    }
+
     try {
       if (editingAssignment) {
         const response = await axiosInstance.put(`/api/assignments/${editingAssignment._id}`, formData, {
@@ -75,6 +81,7 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
         value={formData.assignedIntern}
         onChange={(e) => setFormData({ ...formData, assignedIntern: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
+        disabled={!!editingAssignment}   // cannot be edited
       >
         <option value="">Select Intern</option>
         <option value="Alice">Alice</option>
