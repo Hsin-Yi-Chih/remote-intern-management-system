@@ -1,5 +1,5 @@
 //Get Feedback Function (Read)
-const Feedback = require('../models/Feedbacks');
+const Feedback = require('../models/Feedback');
 
 const getFeedbacks = async (req, res) => {
   try {
@@ -12,9 +12,10 @@ const getFeedbacks = async (req, res) => {
 
 //Add Feedback Function:
 const addFeedback = async (req, res) => {
-  const { assignedIntern, title, comments, linkedAssignments } = req.body;
+  const { assignedIntern, title, comments, visibility, submittedAt} = req.body;
   try {
-    const feedback = await Feedback.create({ userId: req.user.id, assignedIntern, title, comments, linkedAssignments });
+    const feedback = await Feedback.create({ userId: req.user.id, assignedIntern, title, comments, visibility, ...(submittedAt ? { submittedAt } : {}) 
+  });
     res.status(201).json(feedback);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -23,19 +24,24 @@ const addFeedback = async (req, res) => {
 
 // Update Feedback:
 const updateFeedback = async (req, res) => {
-  const { assignedIntern, title, comments, linkedAssignments } = req.body;
   try {
     const feedback = await Feedback.findById(req.params.id);
     if (!feedback) return res.status(404).json({ message: 'Feedback not found' });
 
-    feedback.assignedIntern = assignedIntern || feedback.assignedIntern;
-    feedback.title = title || feedback.title;
-    feedback.comments = comments || feedback.comments;
-    feedback.linkedAssignments = linkedAssignments || feedback.linkedAssignments;
+    if (String(feedback.userId) !== req.user.id) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
 
-    const updatedFeedback = await feedback.save();
-    res.json(updatedFeedback);
+    const { assignedIntern, title, comments, visibility } = req.body;
+    if (assignedIntern !== undefined) feedback.assignedIntern = assignedIntern;
+    if (title !== undefined) feedback.title = title;
+    if (comments !== undefined) feedback.comments = comments;
+    if (visibility !== undefined) feedback.visibility = visibility;
+
+    const updated = await feedback.save();
+    res.json(updated);
   } catch (error) {
+    console.error('updateFeedback error:', error);
     res.status(500).json({ message: error.message });
   }
 };

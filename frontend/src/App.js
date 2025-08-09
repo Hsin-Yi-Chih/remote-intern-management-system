@@ -4,6 +4,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Assignments from './pages/Assignments';
+import Feedbacks from './pages/Feedbacks';
+import FeedbackList from './components/FeedbackList';
+
 
 function App() {
   return (
@@ -15,6 +18,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/assignments" element={<Assignments />} />
+        <Route path="/feedbacks" element={<Feedbacks />} />
+        <Route path="/feedback-list" element={<FeedbackList />} />
       </Routes>
     </Router>
   );
