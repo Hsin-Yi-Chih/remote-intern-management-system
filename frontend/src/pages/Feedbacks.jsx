@@ -76,7 +76,7 @@ const Feedbacks = () => {
   return (
     <div className="container mx-auto p-6 space-y-6">
       <section>
-        <h1 className="text-xl font-bold mb-3">Assignments</h1>
+        <h1 className="text-xl font-bold mb-3">Assignment List</h1>
         <AssignmentTable onSelect={setSelected} />
         {/*View All Feedback*/}
       <button
@@ -95,11 +95,17 @@ const Feedbacks = () => {
               <div>
                 <span className="font-medium">Title:</span> {selected.title}
               </div>
+              {selected.description && (
+                <div className="mt-1">
+                  <span className="font-medium">Description:</span>{' '}
+                  {selected.description}
+                </div>
+              )}
               <div>
-                <span className="font-medium">Intern:</span> {selected.assignedIntern}
+                <span className="font-medium">Assigned Intern:</span> {selected.assignedIntern}
               </div>
               <div>
-                <span className="font-medium">Start:</span>{' '}
+                <span className="font-medium">StartDate:</span>{' '}
                 {selected.startDate
                   ? new Date(selected.startDate).toLocaleDateString()
                   : '—'}
@@ -110,12 +116,6 @@ const Feedbacks = () => {
                   ? new Date(selected.deadline).toLocaleDateString()
                   : '—'}
               </div>
-              {selected.description && (
-                <div className="mt-1">
-                  <span className="font-medium">Description:</span>{' '}
-                  {selected.description}
-                </div>
-              )}
             </div>
           </div>
 

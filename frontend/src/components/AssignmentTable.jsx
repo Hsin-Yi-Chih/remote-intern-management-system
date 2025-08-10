@@ -32,11 +32,11 @@ const AssignmentTable = ({ onSelect }) => {
         <thead className="bg-gray-100">
           <tr>
             <th className="p-2 border">Title</th>
-            <th className="p-2 border">Intern</th>
+            <th className="p-2 border">Assigned Intern</th>
             <th className="p-2 border">StartDate</th>
             <th className="p-2 border">Deadline</th>
             <th className="p-2 border">Status</th>
-            <th className="p-2 border">Select</th>
+            <th className="p-2 border">Add Feedback</th>
           </tr>
         </thead>
         <tbody>
