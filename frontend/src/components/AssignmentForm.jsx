@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../axiosConfig';
+import { useNavigate } from 'react-router-dom';
 
 const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEditingAssignment }) => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [formData, setFormData] = useState({ title: '', description: '', assignedIntern: '', startDate: '', deadline: '' });
 
@@ -32,10 +34,15 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
       alert("Start date cannot be in the past.");
       return;
     }
+    
 
     // assignedIntern cannot be edited
     if (editingAssignment && formData.assignedIntern !== editingAssignment.assignedIntern) {
       alert('Assigned intern cannot be changed.');
+      return;
+    }
+    if (new Date(formData.startDate) > new Date(formData.deadline)) {
+      alert("Start date cannot be after the deadline.");
       return;
     }
 
@@ -61,8 +68,9 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded mb-6">
-      <h1 className="text-2xl font-bold mb-4">{editingAssignment ? 'Your Form Name: Edit Operation' : 'Your Form Name: Create Operation'}</h1>
+    <div>
+    <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded mb-2">
+      <h1 className="text-2xl font-bold mb-4">{editingAssignment ? 'Edit Assignment' : 'Create Assignment'}</h1>
       <input
         type="text"
         placeholder="Title"
@@ -101,9 +109,19 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
         className="w-full mb-4 p-2 border rounded"
       />
       <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
-        {editingAssignment ? 'Update Button' : 'Create Button'}
+        {editingAssignment ? 'Update Button' : 'Create Assignment'}
       </button>
     </form>
+    <div className="mt-2">
+      <button
+      type="button"
+      onClick={() => navigate('/feedbacks')}
+      className="bg-green-600 text-white px-4 py-2 rounded"
+    >
+      View Assignment Table
+    </button>
+    </div>
+  </div>
   );
 };
 
