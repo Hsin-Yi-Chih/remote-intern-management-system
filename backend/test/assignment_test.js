@@ -116,7 +116,19 @@ describe('Update Function Test', () => {
     findByIdStub.restore();
   });
 
+  it('should return 400 if trying to change assignedIntern', async () => {
+  const assignmentId = new mongoose.Types.ObjectId();
+  const doc = { _id: assignmentId, assignedIntern: 'A', save: sinon.stub() };
+  sinon.stub(Assignment, 'findById').resolves(doc);
 
+  const req = { params: { id: assignmentId }, body: { assignedIntern: 'B' } };
+  const res = { status: sinon.stub().returnsThis(), json: sinon.spy() };
+
+  await updateAssignment(req, res);
+
+  expect(res.status.calledWith(400)).to.be.true;
+  expect(res.json.calledWith({ message: 'Assigned intern cannot be changed.' })).to.be.true;
+});
 
   it('should return 404 if assignment is not found', async () => {
     const findByIdStub = sinon.stub(Assignment, 'findById').resolves(null);
