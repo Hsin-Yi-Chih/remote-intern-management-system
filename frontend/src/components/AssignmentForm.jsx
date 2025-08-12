@@ -96,18 +96,34 @@ const AssignmentForm = ({ assignments, setAssignments, editingAssignment, setEdi
         <option value="Bob">Bob</option>
         <option value="Charlie">Charlie</option>
       </select>
-      <input
-        type="date"
-        value={formData.startDate}
-        onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-        className="w-full mb-4 p-2 border rounded"
-      />
-      <input
-        type="date"
-        value={formData.deadline}
-        onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
-        className="w-full mb-4 p-2 border rounded"
-      />
+      {/* Start Date */}
+      <div className="mb-3">
+        <label htmlFor="startDate" className="block text-sm font-semibold mb-1">
+          Start Date
+        </label>
+        <input
+          id="startDate"
+          type="date"
+          lang="en-GB"
+          value={formData.startDate || ""}
+          onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+          className="w-full mb-4 p-2 border rounded"
+        />
+      </div>
+      {/* Deadline */}
+      <div className="mb-3">
+        <label htmlFor="deadline" className="block text-sm font-semibold mb-1">
+          Deadline
+        </label>
+        <input
+          id="deadline"
+          type="date"
+          lang="en-GB"
+          value={formData.deadline || ""}
+          onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
+          className="w-full mb-4 p-2 border rounded"
+        />
+      </div>
       <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
         {editingAssignment ? 'Update Button' : 'Create Assignment'}
       </button>
