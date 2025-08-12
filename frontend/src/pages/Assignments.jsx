@@ -21,6 +21,7 @@ const Assignments = () => {
       }
     };
 
+    
     fetchAssignments();
   }, [user]);
 
