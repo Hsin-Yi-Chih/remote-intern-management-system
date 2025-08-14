@@ -1,3 +1,70 @@
+# Remote Intern Management System
+A full-stack CRUD web application for managing remote interns.  
+Built with Node.js, Express, MongoDB, and React.  
+Deployed on AWS EC2 with CI/CD automation using GitHub Actions.
+
+## Jira Board URL:
+https://connect-team-k67zdr7i.atlassian.net/jira/software/projects/RIMS/boards/34
+
+## Project Setup Instructions
+This project was set up by following the instruction of tutorial.
+
+## 1. Clone the project
+```bash
+git clone https://github.com/rajuiit/sdlapps.git
+```
+## GitHub Repository Setup
+After cloning the starter project, the original remote was removed and replaced with a personal GitHub repository.
+
+## 2. Install dependencies
+Run the following command in the root folder to install both frontend and backend dependencies:
+```bash
+npm run install-all 
+```
+
+## 3. Configure environment variables
+Create a .env file inside the backend/ folder, and copy the contents from .env.example.
+Change the MongoDB connection string replace it with account, password and project name.
+
+## 4. Start the project locally
+Run the following command to start both the frontend and backend:
+```bash
+npm start
+```
+## Version Control Strategy
+The project follows Git best practices:
+- `main` branch for stable code
+- Feature branches created and merged via pull requests
+- Meaningful commit messages
+
+## CI/CD Pipeline with GitHub Actions
+This project uses GitHub Actions to automatically deploy both frontend and backend to an AWS EC2 instance.
+- The workflow is triggered upon every push to the `main` branch.
+- Deployment is performed via SSH using secure credentials stored in GitHub Secrets.
+- The EC2 instance pulls the latest code from the repository, installs dependencies, and restarts the application using PM2.
+- Both frontend and backend run on the same server and are accessible via the same public IP.
+- All frontend interactions trigger backend API calls that update data stored in MongoDB Atlas in real time.
+
+## Public URL of the Deployed Project
+http://16.176.175.24/
+
+### Authentication
+This project does not require login.  
+All users can access and use the dashboard directly without authentication.
+
+
+
+
+
+
+
+
+
+
+
+
+
+*Assignment brief excerpt included below*
 
 **Assessment 1 (Total Marks **20**)**
 
@@ -8,7 +75,7 @@ Assignment: **Software requirements analysis and design (**Full-Stack CRUD Appli
 
 **Objective**
 
-You have been provided with a starter project that includes user authentication using Node.js, React.js, and MongoDB. Your task is to extend this application by implementing CRUD (Create, Read, Update, Delete) operations of different featuresfor a real-world application of your choice, while following industry best practices such as: 
+You have been provided with a starter project that includes user authentication using Node.js, React.js, and MongoDB. Your task is to extend this application by implementing CRUD (Create, Read, Update, Delete) operations of different features for a real-world application of your choice, while following industry best practices such as: 
 
 * **Project Management with JIRA**
 * **Requirement Diagram**, **Block Definition Diagram (**BDD), Parametric Diagram using**SysML**
