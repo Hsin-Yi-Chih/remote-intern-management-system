@@ -1,5 +1,7 @@
-# Remote Intern Management System Overview:
-This project is a **Remote Intern Management System** designed to help administrator efficiently monitor and evaluate the performance of remote interns through task tracking, feedback collection, and final reporting. The system focuses on **two main features**:  
+# Remote Intern Management 
+
+## System Overview:
+This project is a **Remote Intern Management System** designed to help administrators efficiently monitor and evaluate the performance of remote interns through task tracking, feedback collection, and final reporting. The system focuses on **two main features**:  
 1. **Assignment Management** – creating, viewing, updating and deleting assignments.  
 2. **Feedback Management** – creating, reviewing, updating and deleting feedback for interns.
 
@@ -8,10 +10,12 @@ To maintain a clear and manageable scope for demonstrating full-stack CRUD opera
 The application was developed using **Node.js**, **Express**, **MongoDB Atlas**, and **React**. Project planning and task tracking were managed with **JIRA**, version control was handled via **GitHub** following a feature-branch workflow, and deployment was automated through **CI/CD** using **GitHub Actions** and **AWS EC2**.
 
 
-## This system contain the following features:
+## Key Features:
 
 - **User Authentication**  
-  - Register, Login, Logout  
+  - Register
+  - Login
+  - Logout  
   - Update profile
 
 - **Assignment Management**  
@@ -26,6 +30,38 @@ The application was developed using **Node.js**, **Express**, **MongoDB Atlas**,
   - Update feedback  
   - Delete feedback
 
+## Technologies
+
+### Frontend
+- React
+- JavaScript
+- HTML
+- CSS
+
+### Backend
+- Node.js
+- Express
+- JWT Authentication
+- bcrypt
+- RESTful API
+
+### Database
+- MongoDB Atlas
+- Mongoose
+
+### Testing
+- Mocha
+- Chai
+- Chai HTTP
+- Sinon
+
+### Development & Deployment
+- Git
+- GitHub
+- JIRA
+- GitHub Actions
+- AWS EC2
+
 ## Prerequisites
 Before setting up the project, ensure you have the following installed:
 - Node.js [https://nodejs.org/en]
@@ -37,7 +73,7 @@ Before setting up the project, ensure you have the following installed:
 ## Project Setup Instructions
 ### 1. Clone the project
 ```bash
-git clone https://github.com/rajuiit/sdlapps.git
+git clone https://github.com/Hsin-Yi-Chih/remote-intern-management-system.git
 ```
 
 ## 2. Install dependencies
@@ -58,17 +94,9 @@ npm start
 ```
 This will start both frontend and backend servers.
 
-## Public URL of the Deployed Project
-http://16.176.175.24/
 
-> **Note:** This IP corresponds to the successful deployment date (Aug 13, 2025).
-> The IP may change if the EC2 instance is restarted.
-
-### Test Login Credentials
-Username: chy123456@gmail.com
-Password: 123456
-
-## Jira Board URL:
+## Project Management:
+Project planning and task tracking were managed using JIRA.
 https://connect-team-k67zdr7i.atlassian.net/jira/software/projects/RIMS/boards/34
 
 
